@@ -131,3 +131,5 @@ void print_list(ListNode* head)
 	printf("NULL \n");
 }
 ```
+
+잡담.. 구조체 포인터를 매개변수로 사용할 때 -> 사용하는데 ex) p->data 를 p가 가르기는 곳의 data 라고 이해야면 편해서인듯... 
