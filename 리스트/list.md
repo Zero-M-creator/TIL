@@ -85,9 +85,9 @@ element delet(ListType* L, int pos) {
 
 typedef int element;
 
-typedef struct ListNode{
+typedef struct ListNode{ //이 구조체가 노드임!
 	element data;
-	struct ListNode* link; //ListNode 구조체 주소를 담는 포인터 변수 link
+	struct ListNode* link; //ListNode 다음노드 주소를 담는 포인터 변수 link
 } ListNode;
 
 ListNode* insert_first(ListNode* head, element input) {
