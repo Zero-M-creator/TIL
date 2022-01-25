@@ -1,4 +1,4 @@
-# 리스트
+# 원형연결리스트, 이중연결리스트, linked stack, linked queue
 
 원형연결리스트
 
