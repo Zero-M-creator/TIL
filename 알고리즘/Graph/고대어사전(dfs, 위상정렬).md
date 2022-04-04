@@ -67,7 +67,8 @@ void dfs(int here) {
 	order.push_back(here);
 }
 
-//위상정렬
+//dfs를 이용한 위상정렬 
+//dfs를 종료 할 때 마다 현재 정점을 기록한 후 dfsAll 종료 후 기록을 뒤집음 늦게 종료 할 수록 깊게 있음
 vector<int> topologicalSort() { 
 	int m = adj.size();
 	seen = vector<int>(m, 0);
