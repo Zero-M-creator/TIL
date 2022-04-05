@@ -10,6 +10,7 @@ using namespace std;
 //방향그래프 오일러 서킷
 
 
+
 bool checkEuler();
 string solve(const vector<string>& words);
 void getEulerCircuit(int here, vector<int>& circuit);
@@ -18,7 +19,7 @@ vector<int> getEulerTrailOrCircuit();
 void makeGraph(const vector<string>& words);
 
 vector<vector<int>> adj;
-
+//그래프 : 단어의 시작 알파벳과 끝 알파벳을 정점으로하고 단어 string을 간선으로 갖는다.
 vector<string> graph[26][26]; //vector<string>형 2차원 배열 
 
 vector<int> indegree, outdegree; //indegree[i] i로 시작하는 단어 수, outdegree[i] i로 끝나는 단어 수
