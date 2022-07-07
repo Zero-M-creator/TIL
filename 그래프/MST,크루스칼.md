@@ -118,7 +118,61 @@ int main()
 }
 
 ```
+Kruskal.py
+```py
+n, e = map(int, input().split())
 
+parent = [0] * (n + 1)
+for i in range(1, n + 1):
+    parent[i] = i
+
+edges = []
+for _ in range(e):
+    a, b, cost = map(int, input().split())
+    edges.append((cost, a, b))
+
+edges.sort()
+
+rank = [1] * (n + 1) 
+
+def find(parent, u):
+    if u != parent[u]:
+        parent[u] = find(parent, parent[u])
+    return parent[u]
+
+def merge(parent, u, v):
+    u = find(parent, u)
+    v = find(parent, v)
+    if u == v: return
+    if rank[u] > rank[v]:
+        u, v = v, u
+    parent[u] = v
+    if rank[u] == rank[v]:
+        rank[v] += 1
+
+result = 0
+
+for edge in edges:
+    cost, a, b = edge
+    if find(parent, a) != find(parent, b): #사이클 발생 X
+        merge(parent, a, b)
+        result += cost
+
+print(result)
+
+"""
+7 9
+1 2 29
+1 6 75
+2 3 35
+2 6 34
+3 4 7
+4 6 23
+4 7 13
+5 6 53
+6 7 25
+"""
+```
 Prim 
 1. 임의의 노드를 고르고 트리에 넣는다.
 2. 트리의노드와 연결된 노드 중 간선의 가중치가 최소인 노드를 고른 후 트리에 넣는다.
