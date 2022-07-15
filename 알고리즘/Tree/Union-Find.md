@@ -34,7 +34,7 @@ struct OptimizedDisjointSet {
 ```py
 n = int(input())
 parent = [i for i in range(1, n + 1)]
-rank, size = [1] * (n + 1)
+size = [1] * (n + 1)
 
 def find(parent, u):
     if u != parent[u]: 
@@ -45,12 +45,10 @@ def merge(parent, u, v):
     u = find(parent, u)
     v = find(parent, v)
     if u == v: return
-    if rank[u] > rank[v]:
-        u, v = v, u
+    if u > v:
+    	u, v = v, u
     parent[u] = v
     size[v] += size[u]
-    if rank[u] == rank[v]:
-        rank[v] += 1
 
 #모든간선을 확인하는데 두 노드의 부모가 이미 같다면 사이클이 발생한 것이다.
 for i in range(e):
