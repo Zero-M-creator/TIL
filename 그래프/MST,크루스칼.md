@@ -120,46 +120,48 @@ int main()
 ```
 Kruskal.py
 ```py
-n, e = map(int, input().split())
+import sys
+import heapq
+def FastInput():
+    return sys.stdin.readline()
 
-parent = [0] * (n + 1)
-for i in range(1, n + 1):
-    parent[i] = i
+v = int(input())
+e = int(input())
 
 edges = []
 for _ in range(e):
-    a, b, cost = map(int, input().split())
-    edges.append((cost, a, b))
+    a, b, c = map(int, FastInput().split())
+    edges.append((c, a, b))
 
 edges.sort()
 
-rank = [1] * (n + 1) 
+parent = [0] * (v + 1)
+for i in range(v + 1):
+    parent[i] = i
 
-def find(parent, u):
+def getParent(u):
     if u != parent[u]:
-        parent[u] = find(parent, parent[u])
+        parent[u] = getParent(parent[u])
     return parent[u]
 
-def merge(parent, u, v):
-    u = find(parent, u)
-    v = find(parent, v)
+def merge(u, v):
+    u = getParent(u)
+    v = getParent(v)
     if u == v: return
-    if rank[u] > rank[v]:
+    if u > v:
         u, v = v, u
     parent[u] = v
-    if rank[u] == rank[v]:
-        rank[v] += 1
 
-result = 0
+def Kurskal():
+    ret = 0
+    for edge in edges:
+        cost, a, b = edge
+        if getParent(a) != getParent(b):
+            ret += cost
+            merge(a, b)
+    return ret
 
-for edge in edges:
-    cost, a, b = edge
-    if find(parent, a) != find(parent, b): #사이클 발생 X
-        merge(parent, a, b)
-        result += cost
-
-print(result)
-
+print(Kurskal())
 """
 7 9
 1 2 29
