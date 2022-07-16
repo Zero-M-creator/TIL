@@ -177,3 +177,37 @@ Prim
 1. 임의의 노드를 고르고 트리에 넣는다.
 2. 트리의노드와 연결된 노드 중 간선의 가중치가 최소인 노드를 고른 후 트리에 넣는다.
 3. 모든 노드가 트리에 속할때까지 위 1, 2를 반복한다.
+
+```py
+import sys
+import heapq
+def FastInput():
+    return sys.stdin.readline()
+
+v = int(input())
+e = int(input())
+
+graph = [[] for _ in range(v + 1)]
+for _ in range(e):
+    a, b, c = map(int, FastInput().split())
+    graph[a].append([b, c])
+    graph[b].append([a, c])
+    
+def Prim():
+    ret = 0
+    visited = []
+    minH = [[0, 1]]
+    while len(visited) < v:
+        cost, i = heapq.heappop(minH)
+        if i in visited:
+            continue
+        ret += cost
+        visited.append(i)
+        for nei, neiCost in graph[i]:
+            if nei not in visited:
+                heapq.heappush(minH, [neiCost, nei])
+    return ret
+
+print(Prim())
+
+```
