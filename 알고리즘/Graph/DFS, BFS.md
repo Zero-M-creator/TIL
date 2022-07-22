@@ -1,3 +1,6 @@
+BFS
+1. 시작칸을 큐에 넣고 방문
+2. 큐에서 원소를 꺼낸뒤 상하좌우 방문하지 않고 조건에 맞는 칸을 방문 후 큐에 삽입
 ```py
 from collections import deque
 
