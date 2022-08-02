@@ -76,6 +76,9 @@ def fastInput():
 # 알고리즘 : d의 마지막 값과 비교하면서 d[-1] 보다 크다면 길이가 늘어남으로 append하고 
 # d[-1] 보다 작다면 bisect_left를 사용해서 해당 값이 들어갈 수 있는 자리를 찾아서 교체해준다
 # 교체가 일어나면 수열을 유지한체 작은값으로 바뀌게 됨
+
+#경로 역추적 path[x] = arr[x] 의 seq(부분수열에서의 위치)
+#맨오른쪽 최댓값부터 시작하여 가장 최선으로 갱신된 지점을 선택
 n = int(fastInput())
 arr = list(map(int, fastInput().split()))
 
