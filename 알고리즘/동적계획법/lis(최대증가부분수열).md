@@ -79,16 +79,34 @@ def fastInput():
 
 #경로 역추적 path[x] = arr[x] 의 seq(부분수열에서의 위치)
 #맨오른쪽 최댓값부터 시작하여 가장 최선으로 갱신된 지점을 선택
+import sys
+from bisect import bisect_left
+def fastInput():
+    return sys.stdin.readline().rstrip()
+
 n = int(fastInput())
 arr = list(map(int, fastInput().split()))
 
 d = [arr[0]]
+path = [0] * (n)
 
 for i in range(1, n):
-    if arr[i] > d[-1]:
+    if d[-1] < arr[i]:
         d.append(arr[i])
+        path[i] = len(d) - 1
     else:
         index = bisect_left(d, arr[i])
         d[index] = arr[i]
+        path[i] = index
+
+count = len(d) - 1
+result = []
+
+for i in range(n - 1, -1, -1):
+    if count == path[i]:
+        result.append(arr[i])
+        count -= 1
+result.sort()
+print(result)
 print(len(d))
 ```
