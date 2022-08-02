@@ -43,6 +43,25 @@ int main()
 }
 ```
 ```py
+# lis O(n^2) 알고리즘
+import sys
+from bisect import bisect_left
+from collections import deque
+def fastInput():
+    return sys.stdin.readline().rstrip()
+
+n = int(fastInput())
+arr = list(map(int, fastInput().split()))
+
+d = [1] * n
+for i in range(1, n):
+    for j in range(0, i):
+        if arr[i] > arr[j]:
+            d[i] = max(d[i], d[j] + 1)
+
+print(max(d))
+```
+```py
 import sys
 from bisect import bisect_left
 from collections import deque
