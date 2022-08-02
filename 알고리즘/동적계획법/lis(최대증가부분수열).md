@@ -43,7 +43,7 @@ int main()
 }
 ```
 ```py
-# lis O(n^2) 알고리즘
+# lis O(n^2) 알고리즘 d[n] 는 arr[n]을 마지막으로하는 lis의 길이
 import sys
 from bisect import bisect_left
 from collections import deque
