@@ -43,7 +43,7 @@ int main()
 }
 ```
 ```py
-# lis O(n^2) 알고리즘 d[n] 는 arr[n]을 마지막으로하는 lis의 길이
+# lis O(n^2) 알고리즘 #[n] = n번째 수로 끝나는 최대 증가 부분수열 길이
 import sys
 from bisect import bisect_left
 from collections import deque
