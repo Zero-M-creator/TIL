@@ -208,9 +208,9 @@ def prim():
         visited[vertex] = 1
         ret += cost
         count += 1
-        for next, cost_next in graph[vertex]:
+        for next, next_cost in graph[vertex]:
             if visited[next] == 0:
-                heapq.heappush(h, (cost_next, next))
+                heapq.heappush(h, (next_cost, next))
     return ret
 print(prim())
 
