@@ -184,33 +184,35 @@ Prim
 ```py
 import sys
 import heapq
-def FastInput():
-    return sys.stdin.readline()
+def fastInput():
+    return sys.stdin.readline().rstrip()
 
-v = int(input())
-e = int(input())
+n = int(fastInput())
+m = int(fastInput())
 
-graph = [[] for _ in range(v + 1)]
-for _ in range(e):
-    a, b, c = map(int, FastInput().split())
-    graph[a].append([b, c])
-    graph[b].append([a, c])
-    
-def Prim():
+graph = [[] for _ in range(n + 1)]
+for _ in range(m):
+    a, b, c = map(int, fastInput().split())
+    graph[a].append((b, c))
+    graph[b].append((a, c))
+
+def prim():
     ret = 0
-    visited = []
-    minH = [[0, 1]]
-    while len(visited) < v:
-        cost, i = heapq.heappop(minH)
-        if i in visited:
+    visited = [0] * (n + 1)
+    count = 0
+    h = [(0, 1)]
+    while count != n:
+        cost, vertex = heapq.heappop(h)
+        if visited[vertex] == 1: 
             continue
+        visited[vertex] = 1
         ret += cost
-        visited.append(i)
-        for nei, neiCost in graph[i]:
-            if nei not in visited:
-                heapq.heappush(minH, [neiCost, nei])
+        count += 1
+        for next, cost_next in graph[vertex]:
+            if visited[next] == 0:
+                heapq.heappush(h, (cost_next, next))
     return ret
+print(prim())
 
-print(Prim())
 
 ```
